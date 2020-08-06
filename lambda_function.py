@@ -46,33 +46,34 @@ def getTemp(date):
   result = soup.find('table', { 'class', 'table_04'}).find_all_next('td')
 
   return result[-1].text.strip()
-    
-result = getTemp(getDate(dt))
+  
+def lambda_handler(event, context):
+  result = getTemp(getDate(dt))
 
-if result == '':
-  if dt.hour <= 1:
-    result = getTemp(getDate(dt - datetime.timedelta(days = 1)))
-    if result == '':      
-      result_json = {
-        'result' : 'OK',
-        'tem' : result,
-        'date' : now_date,
-      }
+  if result == '':
+    if dt.hour <= 1:
+      result = getTemp(getDate(dt - datetime.timedelta(days = 1)))
+      if result == '':      
+        result_json = {
+          'result' : 'OK',
+          'tem' : result,
+          'date' : now_date,
+        }
+      else:
+        result_json = {
+          'result' : 'NO_CONTENT',    
+          'date' : now_date,
+        }    
     else:
       result_json = {
         'result' : 'NO_CONTENT',    
         'date' : now_date,
-      }    
+      }
   else:
     result_json = {
-      'result' : 'NO_CONTENT',    
+      'result' : 'OK',
+      'tem' : result,
       'date' : now_date,
     }
-else:
-  result_json = {
-    'result' : 'OK',
-    'tem' : result,
-    'date' : now_date,
-  }
 
-print(result_json);
+  print(result_json);
