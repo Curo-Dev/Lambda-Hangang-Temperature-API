@@ -1,8 +1,9 @@
 import datetime
 import requests
 from bs4 import BeautifulSoup
+from pytz import timezone
 
-dt = datetime.datetime.now()
+dt = datetime.datetime.now(timezone("Asia/Seoul"))
 now_date = dt.strftime('%Y-%m-%d %H:%M')
 
 def getDate(dt):
@@ -77,3 +78,6 @@ def lambda_handler(event, context):
     }
 
   return result_json
+
+print (lambda_handler(0, 0))
+        
