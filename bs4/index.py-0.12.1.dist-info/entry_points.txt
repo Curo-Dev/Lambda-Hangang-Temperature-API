@@ -1,3 +1,0 @@
-[console_scripts]
-index-cli=indexpy.cli:main
-
