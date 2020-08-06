@@ -46,7 +46,7 @@ def getTemp(date):
   result = soup.find('table', { 'class', 'table_04'}).find_all_next('td')
 
   return result[-1].text.strip()
-  
+
 def lambda_handler(event, context):
   result = getTemp(getDate(dt))
 
@@ -76,4 +76,4 @@ def lambda_handler(event, context):
       'date' : now_date,
     }
 
-  print(result_json);
+  return result_json
