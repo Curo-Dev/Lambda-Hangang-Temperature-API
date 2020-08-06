@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 from pytz import timezone
 
 dt = datetime.datetime.now(timezone("Asia/Seoul"))
-now_date = dt.strftime('%Y-%m-%d %H:%M')
+now_date = dt.strftime('%Y-%m-%d %H:%M:%S')
 
 def getDate(dt):
   return dt.strftime('%Y-%m-%d')
